@@ -14,6 +14,11 @@ export class StreamerComponent implements OnDestroy {
   protected generatePeriod = 500;
   protected sendPeriod = 1500;
 
+  private MAX_SEND_PERIOD_MS = 60000;
+  private MIN_SEND_PERIOD_MS = 500;
+  private MAX_GENERATE_PERIOD_MS = 60000;
+  private MIN_GENERATE_PERIOD_MS = 500;
+
   ngOnDestroy(): void {
     this.stopStreaming();
   }
@@ -76,5 +81,20 @@ export class StreamerComponent implements OnDestroy {
 
   protected addToBuffer(data: any): void {
     this.buffer.push({ ...data, ts: Date.now() });
+  }
+
+  protected validateInput() {
+    if (this.generatePeriod > this.MAX_GENERATE_PERIOD_MS) {
+      this.generatePeriod = this.MAX_GENERATE_PERIOD_MS;
+    }
+    if (this.sendPeriod > this.MAX_SEND_PERIOD_MS) {
+      this.sendPeriod = this.MAX_SEND_PERIOD_MS;
+    }
+    if (this.generatePeriod < this.MIN_GENERATE_PERIOD_MS) {
+      this.generatePeriod = this.MIN_GENERATE_PERIOD_MS;
+    }
+    if (this.sendPeriod < this.MIN_SEND_PERIOD_MS) {
+      this.sendPeriod = this.MIN_SEND_PERIOD_MS;
+    }
   }
 }

@@ -12,6 +12,10 @@ import { StreamerComponent } from './streamer.component';
           type="number"
           [(ngModel)]="generatePeriod"
           (input)="updateGenerateInterval()"
+          min="100"
+          max="60000"
+          step="100"
+          (blur)="validateInput()"
         />
       </p>
       <p>
@@ -20,6 +24,10 @@ import { StreamerComponent } from './streamer.component';
           type="number"
           [(ngModel)]="sendPeriod"
           (input)="updateSendInterval()"
+          min="100"
+          max="60000"
+          step="100"
+          (blur)="validateInput()"
         />
       </p>
       <button (click)="toggleStreaming()">
