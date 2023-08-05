@@ -10,7 +10,9 @@ export class SocketService {
   private socket: Socket;
 
   constructor() {
-    this.socket = io('http://localhost:3001');
+    this.socket = io(
+      'http://neurobrave-task-server-42c104f7d364.herokuapp.com/'
+    );
   }
 
   getSocket(): Socket {
