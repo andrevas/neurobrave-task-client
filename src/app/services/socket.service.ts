@@ -11,7 +11,7 @@ export class SocketService {
 
   constructor() {
     this.socket = io(
-      'http://neurobrave-task-server-42c104f7d364.herokuapp.com/'
+      'https://neurobrave-task-server-42c104f7d364.herokuapp.com/'
     );
   }
 
